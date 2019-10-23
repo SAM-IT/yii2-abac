@@ -1,0 +1,42 @@
+{
+    "name": "sam-it/yii2-abac",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sam Mousa",
+            "email": "sam@mousa.nl"
+        }
+    ],
+    "require": {
+        "php": "> 7.3",
+        "sam-it/abac": "v3.x-dev"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ],
+    "require-dev": {
+        "yiisoft/yii2": "^2.0",
+        "codeception/codeception":  "> 3.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "SamIT\\Yii2\\abac\\": [
+                "src/"
+            ]
+        }
+    },
+    "autoload-dev": {
+        "classmap": [
+            "vendor/yiisoft/yii2/Yii.php"
+        ],
+        "psr-4": {
+            "app\\": [
+                "tests/_data/app"
+            ]
+        }
+    }
+}
