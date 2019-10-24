@@ -12,6 +12,25 @@ use yii\rbac\ManagerInterface;
 use yii\rbac\Permission;
 use yii\rbac\Role;
 
+/**
+ * Class AuthManager
+ * @package SamIT\Yii2\abac
+ *
+ * This class implements RBAC on top of ABAC.
+ * With ABAC we have source, target and permission for each grant
+ * and rules that may decide on the same source, target and permission, combined with properties they it can obtain from
+ * the environment.
+ *
+ * In RBAC users are assigned roles. This class maps a role to an explicit grant with permission == role name.
+ * In Yii2 roles and permissions are a directed graph, each role can contain other roles and permissions.
+ * Each permission may contain other permissions.
+ * Permissions may also have a rule attached, this implementation does not support rules.
+ * To ensure security during when switching to ABAC, permissions and roles with a rule always result in exceptions.
+ *
+ * Currently nested roles / permissions are not supported, they will be supported in the future via ImpliedPermissionRule
+ *
+ *
+ */
 class AuthManager extends AccessChecker implements ManagerInterface
 {
     /**
@@ -52,9 +71,7 @@ class AuthManager extends AccessChecker implements ManagerInterface
      */
     public function add($object)
     {
-        if ($object instanceof Permission) {
-
-        } elseif ($object instanceof Role) {
+        if ($object instanceof Role) {
             if (isset($object->ruleName)) {
                 throw new NotSupportedException('Rules are not supported');
             }
@@ -68,9 +85,7 @@ class AuthManager extends AccessChecker implements ManagerInterface
      */
     public function remove($object): bool
     {
-        if ($object instanceof Permission) {
-
-        } elseif ($object instanceof Role) {
+        if ($object instanceof Role) {
             $this->removeRole($object);
             return true;
         }
