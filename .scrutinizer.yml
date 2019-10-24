@@ -6,3 +6,6 @@ build:
       tests:
         override:
           - php-scrutinizer-run
+filter:
+  excluded_paths:
+    - "tests/_support/_generated"
