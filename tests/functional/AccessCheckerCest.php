@@ -1,4 +1,8 @@
-<?php namespace tests;
+<?php
+declare(strict_types=1);
+
+namespace tests;
+
 use app\models\Car;
 use app\models\User;
 use SamIT\abac\AuthManager;
@@ -10,7 +14,7 @@ use SamIT\Yii2\abac\ActiveRecordResolver;
 use yii\base\InvalidArgumentException;
 use yii\base\InvalidConfigException;
 
-class AccessCheckerCest
+final class AccessCheckerCest
 {
     public function _before(FunctionalTester $I)
     {

@@ -76,6 +76,7 @@ class AuthManager extends AccessChecker implements ManagerInterface
                 throw new NotSupportedException('Rules are not supported');
             }
             $this->manager->grant($this->getGlobalAuthorizable(), $this->getGlobalAuthorizable(), $object->name);
+            return true;
         }
         throw new NotSupportedException();
     }
@@ -143,7 +144,7 @@ class AuthManager extends AccessChecker implements ManagerInterface
     public function getRolesByUser($userId)
     {
         $global = $this->getGlobalAuthorizable();
-        $user = $this->getUser($userId);
+        $user = $this->getUser((string) $userId);
         if (!isset($user)) {
             throw new InvalidArgumentException("User with id $userId not found");
         }
@@ -270,7 +271,7 @@ class AuthManager extends AccessChecker implements ManagerInterface
      */
     public function assign($role, $userId)
     {
-        $source = $this->getUser($userId);
+        $source = $this->getUser((string) $userId);
         if (!isset($source)) {
             throw new InvalidArgumentException("User with id $userId not found");
         }
@@ -289,7 +290,7 @@ class AuthManager extends AccessChecker implements ManagerInterface
      */
     public function revoke($role, $userId)
     {
-        $source = $this->getUser($userId);
+        $source = $this->getUser((string) $userId);
         if (!isset($source)) {
             throw new InvalidArgumentException("User with id $userId not found");
         }
@@ -378,13 +379,15 @@ class AuthManager extends AccessChecker implements ManagerInterface
     {
         $repository = $this->manager->getRepository();
         $result = [];
+        $global = $this->getGlobalAuthorizable();
         foreach($repository->search(null, $this->getGlobalAuthorizable(), $roleName) as $grant)
         {
-            $assignment = new Assignment();
-            $assignment->userId = $grant->getSource()->getId();
-            $assignment->createdAt = 0;
-            $assignment->roleName = $grant->getPermission();
-            $result[] = $assignment;
+            if ($grant->getSource()->getAuthName() == $global->getAuthName()
+                && $grant->getSource()->getId() == $global->getId()
+            ) {
+                continue;
+            }
+            $result[] =  $grant->getSource()->getId();
         }
         return $result;
 
