@@ -74,7 +74,10 @@ class ActiveRecordRepository implements \SamIT\abac\interfaces\PermissionReposit
                 throw new \RuntimeException('Failed to save permission due to validation errors');
             }
         } catch (\Throwable $t) {
-            throw new \RuntimeException('Failed to save permission', 0, $t);
+            // Check if it already exists.
+            if (!$this->check($grant)) {
+                throw new \RuntimeException('Failed to save permission', 0, $t);
+            }
         }
     }
 
