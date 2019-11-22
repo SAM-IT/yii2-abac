@@ -1,6 +1,9 @@
 <?php
 declare(strict_types=1);
 return [
+
+
+    'class' => \yii\web\Application::class,
     'id' => 'yii2-abac-test',
     'basePath' => dirname(dirname(__DIR__)),
     'components' => [

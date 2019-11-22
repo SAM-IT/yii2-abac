@@ -3197,7 +3197,7 @@ trait FunctionalTesterActions
      * @param $key
      * @param $actual
      * @param $description
-     * @see \Codeception\Module\Asserts::assertArrayNotHasKey()
+     * @see \Codeception\Module\AssertRevokeCests::assertArrayNotHasKey()
      */
     public function assertArrayNotHasKey($key, $actual, $description = null) {
         return $this->getScenario()->runStep(new \Codeception\Step\Action('assertArrayNotHasKey', func_get_args()));

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace tests;
 
-use app\models\User;
+use testapp\models\User;
 use SamIT\abac\engines\SimpleEngine;
 use SamIT\abac\interfaces\Environment;
 use SamIT\abac\repositories\MemoryRepository;

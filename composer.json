@@ -34,7 +34,7 @@
             "vendor/yiisoft/yii2/Yii.php"
         ],
         "psr-4": {
-            "app\\": [
+            "testapp\\": [
                 "tests/_data/app"
             ]
         }

@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 namespace tests;
-use app\models\Car;
+use testapp\models\Car;
 use SamIT\abac\values\Authorizable;
 use SamIT\Yii2\abac\ActiveRecordResolver;
 use tests\FunctionalTester;

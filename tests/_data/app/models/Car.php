@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace app\models;
+namespace testapp\models;
 
 
 use yii\db\ActiveRecord;

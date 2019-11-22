@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace tests;
 
-use app\models\Permission;
+use testapp\models\Permission;
 use SamIT\abac\values\Authorizable;
 use SamIT\abac\values\Grant;
 use SamIT\Yii2\abac\ActiveRecordRepository;

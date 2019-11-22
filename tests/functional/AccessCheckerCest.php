@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace tests;
 
-use app\models\Car;
-use app\models\User;
+use testapp\models\Car;
+use testapp\models\User;
 use SamIT\abac\AuthManager;
 use SamIT\abac\engines\SimpleEngine;
 use SamIT\abac\interfaces\Environment;

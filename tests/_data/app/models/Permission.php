@@ -1,16 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace app\models;
-
+namespace testapp\models;
 
 use yii\db\ActiveRecord;
 use yii\validators\RangeValidator;
-use function GuzzleHttp\Psr7\parse_header;
 
 /**
  * Class Permission
- * @package app\models
+ * @package testapp\models
  * @property string $source_id
  * @property string $source
  * @property string $target_id
@@ -27,6 +25,4 @@ class Permission extends ActiveRecord
             ]
         ];
     }
-
-
 }

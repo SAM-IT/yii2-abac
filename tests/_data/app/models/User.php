@@ -1,13 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace app\models;
-
+namespace testapp\models;
 
 use yii\base\NotSupportedException;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
+/**
+ * Class User
+ * @property string $name
+ */
 class User extends ActiveRecord implements IdentityInterface
 {
 
