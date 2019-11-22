@@ -6,6 +6,7 @@ namespace SamIT\Yii2\abac;
 
 use SamIT\abac\interfaces\Authorizable;
 use SamIT\abac\interfaces\Grant;
+use SamIT\abac\values\Authorizable as AuthorizableObject;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
@@ -38,17 +39,17 @@ class ActiveRecordRepository implements \SamIT\abac\interfaces\PermissionReposit
      */
     public function __construct(
         string $modelClass,
-        ?array $attributeMap = null
+        array $attributeMap = []
     ) {
         $this->modelClass = $modelClass;
 
-        $this->attributeMap = $attributeMap ?? [
+        $this->attributeMap = array_merge([
             self::SOURCE_ID => self::SOURCE_ID,
             self::SOURCE_NAME => self::SOURCE_NAME,
             self::TARGET_ID => self::TARGET_ID,
             self::TARGET_NAME => self::TARGET_NAME,
             self::PERMISSION => self::PERMISSION
-        ];
+        ], $attributeMap);
     }
 
     /**
@@ -74,6 +75,7 @@ class ActiveRecordRepository implements \SamIT\abac\interfaces\PermissionReposit
                 throw new \RuntimeException('Failed to save permission due to validation errors');
             }
         } catch (\Throwable $t) {
+            throw $t;
             // Check if it already exists.
             if (!$this->check($grant)) {
                 throw new \RuntimeException('Failed to save permission', 0, $t);
@@ -143,10 +145,23 @@ class ActiveRecordRepository implements \SamIT\abac\interfaces\PermissionReposit
 
         $query->andFilterWhere([$this->attributeMap[self::PERMISSION] => $permission]);
 
+        /** @var ActiveRecord $permission */
         foreach($query->each() as $permission) {
-            $source = new \SamIT\abac\values\Authorizable($permission->source_id, $permission->source_name);
-            $target = new \SamIT\abac\values\Authorizable($permission->target_id, $permission->target_name);
-            yield new \SamIT\abac\values\Grant($source, $target, $permission->permission);
+            $source = new AuthorizableObject(
+                $permission->getAttribute($this->attributeMap[self::SOURCE_ID]),
+                $permission->getAttribute($this->attributeMap[self::SOURCE_NAME])
+            );
+
+            $target = new AuthorizableObject(
+                $permission->getAttribute($this->attributeMap[self::TARGET_ID]),
+                $permission->getAttribute($this->attributeMap[self::TARGET_NAME])
+            );
+
+            yield new \SamIT\abac\values\Grant(
+                $source,
+                $target,
+                $permission->getAttribute($this->attributeMap[self::PERMISSION])
+            );
         }
     }
 }

@@ -15,7 +15,7 @@ class ActiveRecordRepositoryCest
         $schema = \Yii::$app->db->schema;
         \Yii::$app->db->createCommand()->createTable(Permission::tableName(), [
             'id' => $schema->createColumnSchemaBuilder('pk'),
-            'source_name' => $schema->createColumnSchemaBuilder('string'),
+            'source' => $schema->createColumnSchemaBuilder('string'),
             'source_id' => $schema->createColumnSchemaBuilder('string'),
             'target_name' => $schema->createColumnSchemaBuilder('string'),
             'target_id' => $schema->createColumnSchemaBuilder('string'),
@@ -26,7 +26,9 @@ class ActiveRecordRepositoryCest
     // tests
     public function testGrant(FunctionalTester $I)
     {
-        $repository = new ActiveRecordRepository(Permission::class);
+        $repository = new ActiveRecordRepository(Permission::class, [
+            ActiveRecordRepository::SOURCE_NAME => 'source'
+        ]);
         $auth1 = new Authorizable('1', 'a');
         $auth2 = new Authorizable('2', 'test');
 
@@ -38,7 +40,7 @@ class ActiveRecordRepositoryCest
         codecept_debug(Permission::find()->asArray()->all());
         $I->seeRecord(Permission::class, [
             'source_id' => $auth1->getId(),
-            'source_name' => $auth1->getAuthName(),
+            'source' => $auth1->getAuthName(),
             'target_id' => $auth2->getId(),
             'target_name' => $auth2->getAuthName(),
             'permission' => 'abc'
@@ -47,7 +49,9 @@ class ActiveRecordRepositoryCest
 
     public function testGrantValidationFailed(FunctionalTester $I)
     {
-        $repository = new ActiveRecordRepository(Permission::class);
+        $repository = new ActiveRecordRepository(Permission::class, [
+            ActiveRecordRepository::SOURCE_NAME => 'source'
+        ]);
         $auth1 = new Authorizable('1', 'invalid');
         $auth2 = new Authorizable('2', 'test');
 
@@ -59,7 +63,7 @@ class ActiveRecordRepositoryCest
 
         $I->dontSeeRecord(Permission::class, [
             'source_id' => $auth1->getId(),
-            'source_name' => $auth1->getAuthName(),
+            'source' => $auth1->getAuthName(),
             'target_id' => $auth2->getId(),
             'target_name' => $auth2->getAuthName(),
             'permission' => 'abc'
@@ -68,7 +72,9 @@ class ActiveRecordRepositoryCest
 
     public function testRevoke(FunctionalTester $I)
     {
-        $repository = new ActiveRecordRepository(Permission::class);
+        $repository = new ActiveRecordRepository(Permission::class, [
+            ActiveRecordRepository::SOURCE_NAME => 'source'
+        ]);
 
         $auth1 = new Authorizable('1', 'invalid');
         $auth2 = new Authorizable('2', 'test');
@@ -84,7 +90,9 @@ class ActiveRecordRepositoryCest
 
     public function testSearch(FunctionalTester $I)
     {
-        $repository = new ActiveRecordRepository(Permission::class);
+        $repository = new ActiveRecordRepository(Permission::class, [
+            ActiveRecordRepository::SOURCE_NAME => 'source'
+        ]);
 
         $auth1 = new Authorizable('1', 'invalid');
         $auth2 = new Authorizable('2', 'test');
@@ -92,7 +100,7 @@ class ActiveRecordRepositoryCest
         $I->assertCount(0, $repository->search(null, null, null));
         $I->haveRecord(Permission::class, [
             'source_id' => $auth1->getId(),
-            'source_name' => $auth1->getAuthName(),
+            'source' => $auth1->getAuthName(),
             'target_id' => $auth2->getId(),
             'target_name' => $auth2->getAuthName(),
             'permission' => 'test'

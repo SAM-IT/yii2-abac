@@ -12,7 +12,7 @@ use function GuzzleHttp\Psr7\parse_header;
  * Class Permission
  * @package app\models
  * @property string $source_id
- * @property string $source_name
+ * @property string $source
  * @property string $target_id
  * @property string $target_name
  */
@@ -23,7 +23,7 @@ class Permission extends ActiveRecord
         return [
             [
                 // Arbitrarily restrict source_name to some values
-                ['source_name'], RangeValidator::class, 'range' => ['a', 'b']
+                ['source'], RangeValidator::class, 'range' => ['a', 'b']
             ]
         ];
     }
