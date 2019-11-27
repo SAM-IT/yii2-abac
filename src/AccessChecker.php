@@ -72,13 +72,18 @@ class AccessChecker  implements
         return new Authorizable($this->globalId, $this->globalName);
     }
 
+    private $_userCache = [];
     /**
      * @param string $id
      * @return IdentityInterface|null
      */
     final protected function getUser(string $id): ?IdentityInterface
     {
-        return $this->userClass::findIdentity($id);
+        // We cache positive lookups only.
+        if (!isset($this->_userCache[$id])) {
+            $this->_userCache[$id] = $this->userClass::findIdentity($id);
+        }
+        return $this->_userCache[$id];
     }
 
     /**
