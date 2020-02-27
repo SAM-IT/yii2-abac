@@ -10,7 +10,7 @@
     ],
     "require": {
         "php": "> 7.3",
-        "sam-it/abac": "v3.x-dev"
+        "sam-it/abac": ">= 3, < 4"
     },
     "repositories": [
         {
