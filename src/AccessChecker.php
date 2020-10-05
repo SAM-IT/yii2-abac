@@ -97,7 +97,7 @@ class AccessChecker  implements
      */
     public function checkAccess($userId, $permissionName, $params = [])
     {
-        $user = $this->getUser((string) $userId) ?? new Authorizable($this->guestId, $this->guestName);
+        $user = $this->getUser(isset($userId) ? (string) $userId : null) ?? new Authorizable($this->guestId, $this->guestName);
 
         if (isset($params[self::TARGET_PARAM]) && !is_object($params[self::TARGET_PARAM])) {
             throw new InvalidArgumentException('Target, if passed, must be an object');
