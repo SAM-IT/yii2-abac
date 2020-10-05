@@ -11,7 +11,7 @@ use yii\base\InvalidConfigException;
 use yii\rbac\CheckAccessInterface;
 use yii\web\IdentityInterface;
 
-class AccessChecker  implements
+class AccessChecker implements
     CheckAccessInterface,
     Configurable
 {
@@ -46,22 +46,22 @@ class AccessChecker  implements
      */
     private $userClass;
 
-      public function __construct(
+    public function __construct(
         AuthManager $manager,
         $config = []
     ) {
         $this->manager = $manager;
 
-        foreach($config as $key => $value) {
+        foreach ($config as $key => $value) {
             $this->$key = $value;
         }
 
-          if (!isset($this->userClass)) {
-              throw new \yii\base\InvalidConfigException("userClass must be configured.");
-          }
-          if (!is_subclass_of($this->userClass, IdentityInterface::class, true)) {
-              throw new InvalidConfigException("userClass must implement IdentityInterface");
-          }
+        if (!isset($this->userClass)) {
+            throw new \yii\base\InvalidConfigException("userClass must be configured.");
+        }
+        if (!is_subclass_of($this->userClass, IdentityInterface::class, true)) {
+            throw new InvalidConfigException("userClass must implement IdentityInterface");
+        }
     }
 
     /**
@@ -107,5 +107,4 @@ class AccessChecker  implements
 
         return $this->manager->check($user, $target, $permissionName);
     }
-
 }

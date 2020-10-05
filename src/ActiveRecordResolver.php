@@ -24,7 +24,6 @@ class ActiveRecordResolver implements Resolver
         } else {
             return null;
         }
-
     }
 
     /**

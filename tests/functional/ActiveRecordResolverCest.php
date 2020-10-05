@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 namespace tests;
+
 use testapp\models\Car;
 use SamIT\abac\values\Authorizable;
 use SamIT\Yii2\abac\ActiveRecordResolver;
@@ -58,5 +59,4 @@ class ActiveRecordResolverCest
 
         $I->assertNull($resolver->toSubject($authorizable));
     }
-
 }

@@ -57,7 +57,7 @@ class ActiveRecordRepositoryCest
 
         $grant = new Grant($auth1, $auth2, 'abc');
 
-        $I->expectThrowable(\RuntimeException::class, function() use ($repository, $grant) {
+        $I->expectThrowable(\RuntimeException::class, function () use ($repository, $grant) {
             return $repository->grant($grant);
         });
 

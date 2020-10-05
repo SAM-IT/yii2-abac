@@ -28,7 +28,8 @@ final class AuthManagerCest
             new SimpleEngine([]),
             new MemoryRepository(),
             new ActiveRecordResolver(),
-            new class extends \ArrayObject implements Environment {}
+            new class extends \ArrayObject implements Environment {
+            }
         );
 
         $schema = \Yii::$app->db->schema;
@@ -63,7 +64,7 @@ final class AuthManagerCest
 
     public function testAddRoleWithRule(FunctionalTester $I)
     {
-        $I->expectThrowable(NotSupportedException::class, function() {
+        $I->expectThrowable(NotSupportedException::class, function () {
             $role = new Role();
             $role->name = 'abc';
             $role->ruleName = 'test';
@@ -73,7 +74,7 @@ final class AuthManagerCest
 
     public function testAddPermission(FunctionalTester $I)
     {
-        $I->expectThrowable(NotSupportedException::class, function() {
+        $I->expectThrowable(NotSupportedException::class, function () {
             $permission = new Permission();
             $permission->name = 'abc';
             $this->authManager->add($permission);
@@ -92,7 +93,7 @@ final class AuthManagerCest
         $I->assertTrue($this->authManager->checkAccess(1, $role->name));
 
 
-        $I->expectThrowable(InvalidArgumentException::class, function() use ($role) {
+        $I->expectThrowable(InvalidArgumentException::class, function () use ($role) {
             $this->authManager->assign($role, -6);
         });
     }
@@ -115,6 +116,4 @@ final class AuthManagerCest
 
         $I->assertEmpty($this->authManager->getUserIdsByRole($role->name));
     }
-
-
 }

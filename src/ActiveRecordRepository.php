@@ -3,7 +3,6 @@
 
 namespace SamIT\Yii2\abac;
 
-
 use SamIT\abac\interfaces\Authorizable;
 use SamIT\abac\interfaces\Grant;
 use SamIT\abac\values\Authorizable as AuthorizableObject;
@@ -145,7 +144,7 @@ class ActiveRecordRepository implements \SamIT\abac\interfaces\PermissionReposit
         $query->andFilterWhere([$this->attributeMap[self::PERMISSION] => $permission]);
 
         /** @var ActiveRecord $permission */
-        foreach($query->each() as $permission) {
+        foreach ($query->each() as $permission) {
             $source = new AuthorizableObject(
                 $permission->getAttribute($this->attributeMap[self::SOURCE_ID]),
                 $permission->getAttribute($this->attributeMap[self::SOURCE_NAME])

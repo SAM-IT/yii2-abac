@@ -29,14 +29,15 @@ final class AccessCheckerCest
     public function testConfigValidation(FunctionalTester $I)
     {
         $ruleEngine = new SimpleEngine([]);
-        $environment = new class extends \ArrayObject implements Environment {};
+        $environment = new class extends \ArrayObject implements Environment {
+        };
 
         $manager = new AuthManager($ruleEngine, new EmptyRepository(), new ActiveRecordResolver(), $environment);
-        $I->expectThrowable(InvalidConfigException::class, function() use ($manager) {
+        $I->expectThrowable(InvalidConfigException::class, function () use ($manager) {
             $accessChecker =  new AccessChecker($manager);
         });
 
-        $I->expectThrowable(InvalidConfigException::class, function() use ($manager) {
+        $I->expectThrowable(InvalidConfigException::class, function () use ($manager) {
             $accessChecker =  new AccessChecker($manager, [
                 'userClass' => Car::class
             ]);
@@ -45,13 +46,13 @@ final class AccessCheckerCest
         $accessChecker =  new AccessChecker($manager, [
             'userClass' => User::class
         ]);
-
     }
 
     public function testCheckAccess(FunctionalTester $I)
     {
         $ruleEngine = new SimpleEngine([]);
-        $environment = new class extends \ArrayObject implements Environment {};
+        $environment = new class extends \ArrayObject implements Environment {
+        };
 
         $manager = new AuthManager($ruleEngine, new EmptyRepository(), new ActiveRecordResolver(), $environment);
         $accessChecker =  new AccessChecker($manager, [
@@ -59,25 +60,21 @@ final class AccessCheckerCest
         ]);
 
         $I->assertFalse($accessChecker->checkAccess(1, 'test'));
-
-
     }
 
     public function testCheckAccessInvalidTargets(FunctionalTester $I)
     {
         $ruleEngine = new SimpleEngine([]);
-        $environment = new class extends \ArrayObject implements Environment {};
+        $environment = new class extends \ArrayObject implements Environment {
+        };
 
         $manager = new AuthManager($ruleEngine, new EmptyRepository(), new ActiveRecordResolver(), $environment);
         $accessChecker =  new AccessChecker($manager, [
             'userClass' => User::class
         ]);
 
-        $I->expectThrowable(InvalidArgumentException::class, function() use ($accessChecker) {
+        $I->expectThrowable(InvalidArgumentException::class, function () use ($accessChecker) {
             $accessChecker->checkAccess(1, 'test', [AccessChecker::TARGET_PARAM => 'cool']);
         });
-
-
-
     }
 }

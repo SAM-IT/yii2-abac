@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace SamIT\Yii2\abac;
 
-
 use SamIT\abac\exceptions\UnresolvableSourceException;
 use yii\base\InvalidArgumentException;
 use yii\base\NotSupportedException;
@@ -42,7 +41,6 @@ class AuthManager extends AccessChecker implements ManagerInterface
     {
         parent::__construct($manager, $config);
         $this->manager = $manager;
-
     }
 
 
@@ -96,8 +94,7 @@ class AuthManager extends AccessChecker implements ManagerInterface
     private function removeRole(Role $role): void
     {
         $repository = $this->manager->getRepository();
-        foreach($repository->search(null, $this->getGlobalAuthorizable(), $role->name) as $grant)
-        {
+        foreach ($repository->search(null, $this->getGlobalAuthorizable(), $role->name) as $grant) {
             $this->manager->getRepository()->revoke($grant);
         }
     }
@@ -131,7 +128,7 @@ class AuthManager extends AccessChecker implements ManagerInterface
     {
         $global = $this->getGlobalAuthorizable();
         $result = [];
-        foreach($this->manager->getRepository()->search($global, $global, null) as $grant) {
+        foreach ($this->manager->getRepository()->search($global, $global, null) as $grant) {
             $result[] = $role = new Role();
             $role->name = $grant->getPermission();
         }
@@ -154,7 +151,7 @@ class AuthManager extends AccessChecker implements ManagerInterface
             throw new UnresolvableSourceException($source);
         }
         $result = [];
-        foreach($this->manager->getRepository()->search($source, $global, null) as $grant) {
+        foreach ($this->manager->getRepository()->search($source, $global, null) as $grant) {
             $result[] = $role = new Role();
             $role->name = $grant->getPermission();
         }
@@ -321,8 +318,7 @@ class AuthManager extends AccessChecker implements ManagerInterface
         }
 
         $repository = $this->manager->getRepository();
-        foreach($repository->search($authorizable, $this->getGlobalAuthorizable(), null) as $grant)
-        {
+        foreach ($repository->search($authorizable, $this->getGlobalAuthorizable(), null) as $grant) {
             $this->manager->getRepository()->revoke($grant);
         }
     }
@@ -361,8 +357,7 @@ class AuthManager extends AccessChecker implements ManagerInterface
 
         $repository = $this->manager->getRepository();
         $result = [];
-        foreach($repository->search($authorizable, $this->getGlobalAuthorizable(), null) as $grant)
-        {
+        foreach ($repository->search($authorizable, $this->getGlobalAuthorizable(), null) as $grant) {
             $assignment = new Assignment();
             $assignment->userId = $userId;
             $assignment->createdAt = 0;
@@ -380,8 +375,7 @@ class AuthManager extends AccessChecker implements ManagerInterface
         $repository = $this->manager->getRepository();
         $result = [];
         $global = $this->getGlobalAuthorizable();
-        foreach($repository->search(null, $this->getGlobalAuthorizable(), $roleName) as $grant)
-        {
+        foreach ($repository->search(null, $this->getGlobalAuthorizable(), $roleName) as $grant) {
             if ($grant->getSource()->getAuthName() == $global->getAuthName()
                 && $grant->getSource()->getId() == $global->getId()
             ) {
@@ -390,7 +384,6 @@ class AuthManager extends AccessChecker implements ManagerInterface
             $result[] =  $grant->getSource()->getId();
         }
         return $result;
-
     }
 
     /**
@@ -431,8 +424,7 @@ class AuthManager extends AccessChecker implements ManagerInterface
     public function removeAllAssignments()
     {
         $repository = $this->manager->getRepository();
-        foreach($repository->search(null, $this->getGlobalAuthorizable(), null) as $grant)
-        {
+        foreach ($repository->search(null, $this->getGlobalAuthorizable(), null) as $grant) {
             $this->manager->getRepository()->revoke($grant);
         }
     }
