@@ -74,11 +74,14 @@ class AccessChecker  implements
 
     private $_userCache = [];
     /**
-     * @param string $id
+     * @param null|string $id
      * @return IdentityInterface|null
      */
-    final protected function getUser(string $id): ?IdentityInterface
+    final protected function getUser(?string $id): ?IdentityInterface
     {
+        if (!isset($id)) {
+            return null;
+        }
         // We cache positive lookups only.
         if (!isset($this->_userCache[$id])) {
             $this->_userCache[$id] = $this->userClass::findIdentity($id);
