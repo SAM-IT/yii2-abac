@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "php": "> 7.3",
+        "php": "> 8.1",
         "sam-it/abac": ">= 3, < 4"
     },
     "repositories": [
@@ -60,6 +60,11 @@
             "commit-msg": [
                 "npx commitlint -e"
             ]
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "yiisoft/yii2-composer": true
         }
     }
 }
