@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace testapp\models;
@@ -13,7 +14,6 @@ use yii\web\IdentityInterface;
  */
 class User extends ActiveRecord implements IdentityInterface
 {
-
     /**
      * @inheritDoc
      */

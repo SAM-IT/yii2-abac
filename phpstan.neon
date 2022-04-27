@@ -1,0 +1,11 @@
+
+parameters:
+  level: 9
+  scanDirectories:
+    - tests/_support
+  paths:
+    - src
+    - tests/functional
+    - tests/unit
+  treatPhpDocTypesAsCertain: false
+  reportUnmatchedIgnoredErrors: false

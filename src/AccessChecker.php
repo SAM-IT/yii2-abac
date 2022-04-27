@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace SamIT\Yii2\abac;
@@ -12,8 +13,7 @@ use yii\rbac\CheckAccessInterface;
 use yii\web\IdentityInterface;
 
 class AccessChecker implements
-    CheckAccessInterface,
-    Configurable
+    CheckAccessInterface
 {
     public const TARGET_PARAM = 'target';
     public const GLOBAL = '__global__';
@@ -22,80 +22,67 @@ class AccessChecker implements
     // Using special characters prevents resolvers from accidentally resolving this when looking for class names.
     public const BUILTIN = '{builtin}';
 
-    /**
-     * @var AuthManager
-     */
-    private $manager;
+    private AuthManager $manager;
 
     /**
      * @var string Auth name to use for permission checks without target
      */
-    private $globalName = self::BUILTIN;
+    private string $globalName = self::BUILTIN;
 
     /**
      * @var string Auth id to use for permission checks without target
      */
-    private $globalId = self::GLOBAL;
+    private string $globalId = self::GLOBAL;
 
-    private $guestId = self::GUEST;
+    private string $guestId = self::GUEST;
 
-    private $guestName = self::BUILTIN;
+    private string $guestName = self::BUILTIN;
 
     /**
-     * @var string Name of a class that implements IdentityInterface
+     * @param class-string<IdentityInterface> $userClass
      */
-    private $userClass;
-
     public function __construct(
         AuthManager $manager,
-        $config = []
+        private string $userClass,
     ) {
         $this->manager = $manager;
-
-        foreach ($config as $key => $value) {
-            $this->$key = $value;
-        }
-
-        if (!isset($this->userClass)) {
-            throw new \yii\base\InvalidConfigException("userClass must be configured.");
-        }
+        /** @phpstan-ignore-next-line  */
         if (!is_subclass_of($this->userClass, IdentityInterface::class, true)) {
             throw new InvalidConfigException("userClass must implement IdentityInterface");
         }
     }
 
-    /**
-     * @return Authorizable
-     */
     final protected function getGlobalAuthorizable(): Authorizable
     {
         return new Authorizable($this->globalId, $this->globalName);
     }
 
-    private $_userCache = [];
     /**
-     * @param null|string $id
-     * @return IdentityInterface|null
+     * @var array<string, IdentityInterface>
      */
+    private array $userCache = [];
+
     final protected function getUser(?string $id): ?IdentityInterface
     {
         if (!isset($id)) {
             return null;
         }
         // We cache positive lookups only.
-        if (!isset($this->_userCache[$id])) {
-            $this->_userCache[$id] = $this->userClass::findIdentity($id);
+        if (!isset($this->userCache[$id])) {
+            $user = $this->userClass::findIdentity($id);
+            if (isset($user)) {
+                $this->userCache[$id] = $user;
+            }
         }
-        return $this->_userCache[$id];
+        return $this->userCache[$id] ?? null;
     }
 
     /**
-     * @param int|string $userId
+     * @param int|string|null $userId
      * @param string $permissionName
-     * @param array $params
-     * @return bool
+     * @param array<mixed> $params
      */
-    public function checkAccess($userId, $permissionName, $params = [])
+    public function checkAccess($userId, $permissionName, $params = []): bool
     {
         $user = $this->getUser(isset($userId) ? (string) $userId : null) ?? new Authorizable($this->guestId, $this->guestName);
 
@@ -104,7 +91,7 @@ class AccessChecker implements
         }
 
         $target = $params[self::TARGET_PARAM] ?? $this->getGlobalAuthorizable();
-
+        /** @phpstan-ignore-next-line */
         return $this->manager->check($user, $target, $permissionName);
     }
 }

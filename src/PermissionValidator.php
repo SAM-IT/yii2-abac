@@ -1,37 +1,43 @@
 <?php
+
 declare(strict_types=1);
 
 namespace SamIT\Yii2\abac;
 
+use SamIT\abac\interfaces\AccessChecker as AccessChecker;
 use SamIT\abac\interfaces\Authorizable;
 use yii\base\InvalidConfigException;
 use yii\db\ActiveQueryInterface;
 use yii\validators\Validator;
 use function iter\all;
 
+/**
+ * @psalm-suppress PropertyNotSetInConstructor
+ */
 class PermissionValidator extends Validator
 {
-
     private string $field = 'id';
     public bool $allowArray = false;
 
-    public ActiveQueryInterface $query;
-    public \SamIT\abac\interfaces\AccessChecker $accessChecker;
-    public Authorizable $source;
+
     public string $permissionName = 'admin';
 
-    public function __construct($config = [])
-    {
+    /**
+     * @param array<string, mixed> $config
+     */
+    public function __construct(
+        private ActiveQueryInterface $query,
+        private AccessChecker $accessChecker,
+        private Authorizable $source,
+        array $config = []
+    ) {
         parent::__construct($config);
-        if (!isset($this->query)) {
-            throw new InvalidConfigException('Query is required');
-        }
-
-        if (!isset($this->user)) {
-            throw new InvalidConfigException('User is required');
-        }
     }
 
+    /**
+     * @param mixed $value
+     * @return array{0: string, 1:array<string, string>}|null
+     */
     protected function validateValue($value): ?array
     {
         if (!$this->allowArray && is_array($value)) {
@@ -46,7 +52,7 @@ class PermissionValidator extends Validator
             return ["One or more models not found", []];
         }
 
-        if (!all(fn(Authorizable $model) => $this->accessChecker->check($this->source, $model, $this->permissionName), $models)) {
+        if (!all(fn (Authorizable $model) => $this->accessChecker->check($this->source, $model, $this->permissionName), $models)) {
             return ["You do not have the appropriate permissions", []];
         }
 

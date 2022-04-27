@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
 
 namespace SamIT\Yii2\abac;
 
 use SamIT\abac\interfaces\Authorizable;
 use SamIT\abac\interfaces\Grant;
+use SamIT\abac\interfaces\PermissionRepository;
 use SamIT\abac\values\Authorizable as AuthorizableObject;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
@@ -13,7 +15,7 @@ use yii\db\ActiveRecord;
  * Class ActiveRecordRepository
  * Store permissions in an ActiveRecord model
  */
-class ActiveRecordRepository implements \SamIT\abac\interfaces\PermissionRepository
+class ActiveRecordRepository implements PermissionRepository
 {
     public const SOURCE_ID = 'source_id';
     public const SOURCE_NAME = 'source_name';
@@ -22,19 +24,19 @@ class ActiveRecordRepository implements \SamIT\abac\interfaces\PermissionReposit
     public const PERMISSION = 'permission';
 
     /**
-     * @var string Class of the AR model
+     * @var class-string<ActiveRecord> Class of the AR model
      */
-    private $modelClass;
+    private string $modelClass;
 
     /**
-     * @var string[string] Maps grant properties to AR attributes
+     * @var array<string> Maps grant properties to AR attributes
      */
-    private $attributeMap;
+    private array $attributeMap;
 
     /**
      * PermissionRepository constructor.
-     * @param string $modelClass Class name of the model
-     * @param array $attributeMap Map mapping grant properties to model attributes
+     * @param class-string<ActiveRecord> $modelClass Class name of the model
+     * @param array<string, string> $attributeMap Map mapping grant properties to model attributes
      */
     public function __construct(
         string $modelClass,
@@ -51,9 +53,6 @@ class ActiveRecordRepository implements \SamIT\abac\interfaces\PermissionReposit
         ], $attributeMap);
     }
 
-    /**
-     * @inheritDoc
-     */
     public function grant(Grant $grant): void
     {
         try {
@@ -61,8 +60,10 @@ class ActiveRecordRepository implements \SamIT\abac\interfaces\PermissionReposit
             $target = $grant->getTarget();
             $permission = $grant->getPermission();
 
-            /** @var ActiveRecord $permissionModel */
-            $permissionModel = new $this->modelClass;
+            /**
+             * @psalm-suppress UnsafeInstantiation
+             */
+            $permissionModel = new $this->modelClass();
             $permissionModel->setAttributes([
                 $this->attributeMap[self::SOURCE_ID] => $source->getId(),
                 $this->attributeMap[self::SOURCE_NAME] => $source->getAuthName(),
@@ -119,12 +120,8 @@ class ActiveRecordRepository implements \SamIT\abac\interfaces\PermissionReposit
             ->exists();
     }
 
-    /**
-     * @inheritDoc
-     */
     public function search(?Authorizable $source, ?Authorizable $target, ?string $permission): iterable
     {
-        /** @var ActiveQuery $query */
         $query = $this->modelClass::find();
 
         if (isset($source)) {
@@ -143,22 +140,27 @@ class ActiveRecordRepository implements \SamIT\abac\interfaces\PermissionReposit
 
         $query->andFilterWhere([$this->attributeMap[self::PERMISSION] => $permission]);
 
-        /** @var ActiveRecord $permission */
-        foreach ($query->each() as $permission) {
+        /** @var ActiveRecord $permissionRecord */
+        foreach ($query->each() as $permissionRecord) {
             $source = new AuthorizableObject(
-                $permission->getAttribute($this->attributeMap[self::SOURCE_ID]),
-                $permission->getAttribute($this->attributeMap[self::SOURCE_NAME])
+                /** @phpstan-ignore-next-line */
+                (string) $permissionRecord->getAttribute($this->attributeMap[self::SOURCE_ID]),
+                /** @phpstan-ignore-next-line */
+                (string) $permissionRecord->getAttribute($this->attributeMap[self::SOURCE_NAME])
             );
 
             $target = new AuthorizableObject(
-                $permission->getAttribute($this->attributeMap[self::TARGET_ID]),
-                $permission->getAttribute($this->attributeMap[self::TARGET_NAME])
+                /** @phpstan-ignore-next-line */
+                (string) $permissionRecord->getAttribute($this->attributeMap[self::TARGET_ID]),
+                /** @phpstan-ignore-next-line */
+                (string) $permissionRecord->getAttribute($this->attributeMap[self::TARGET_NAME])
             );
 
             yield new \SamIT\abac\values\Grant(
                 $source,
                 $target,
-                $permission->getAttribute($this->attributeMap[self::PERMISSION])
+                /** @phpstan-ignore-next-line */
+                (string) $permissionRecord->getAttribute($this->attributeMap[self::PERMISSION])
             );
         }
     }

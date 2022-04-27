@@ -1,21 +1,18 @@
 <?php
+
 declare(strict_types=1);
 
 namespace tests;
 
-use testapp\models\Car;
+use PHPUnit\Framework\Assert;
+use SamIT\abac\exceptions\UnresolvableException;
 use SamIT\abac\values\Authorizable;
 use SamIT\Yii2\abac\ActiveRecordResolver;
-use tests\FunctionalTester;
+use testapp\models\Car;
 
-class ActiveRecordResolverCest
+final class ActiveRecordResolverCest
 {
-    public function _before(FunctionalTester $I)
-    {
-    }
-
-    // tests
-    public function testToSubject(FunctionalTester $I)
+    public function testToSubjectWithUnsavedModel(FunctionalTester $I): void
     {
         $resolver = new ActiveRecordResolver();
 
@@ -25,29 +22,44 @@ class ActiveRecordResolverCest
         ])->execute();
 
         $model = new Car();
-        $I->assertNull($resolver->fromSubject($model));
+
+        $I->expectThrowable(UnresolvableException::class, fn () => $resolver->fromSubject($model));
+    }
+
+
+    public function testToSubject(FunctionalTester $I): void
+    {
+        $resolver = new ActiveRecordResolver();
+
+
+        \Yii::$app->db->createCommand()->createTable(Car::tableName(), [
+            'id' => \Yii::$app->db->schema->createColumnSchemaBuilder('pk')
+        ])->execute();
+
+        $model = new Car();
 
         $model->save();
 
         $authorizable = $resolver->fromSubject($model);
 
         $I->assertInstanceOf(Authorizable::class, $authorizable);
-        $I->assertSame((string) $model->primaryKey, $authorizable->getId());
+        $I->assertSame((string) $model->id, $authorizable->getId());
 
 
         $car = $resolver->toSubject($authorizable);
 
-        $I->assertInstanceOf(Car::class, $car);
-        $I->assertSame($model->primaryKey, $car->primaryKey);
+        Assert::assertInstanceOf(Car::class, $car);
+        Assert::assertSame($model->id, $car->id);
     }
 
-    public function testNonExistentClass(FunctionalTester $I)
+    public function testNonExistentClass(FunctionalTester $I): void
     {
         $authorizable = new Authorizable('13', 'abc');
         $resolver = new ActiveRecordResolver();
-        $I->assertNull($resolver->toSubject($authorizable));
+        $I->expectThrowable(UnresolvableException::class, fn () => $resolver->toSubject($authorizable));
     }
-    public function testNonExistentRecord(FunctionalTester $I)
+
+    public function testNonExistentRecord(FunctionalTester $I): void
     {
         $resolver = new ActiveRecordResolver();
         \Yii::$app->db->createCommand()->createTable(Car::tableName(), [
@@ -57,6 +69,6 @@ class ActiveRecordResolverCest
         $model->save();
         $authorizable = new Authorizable('-1314', $resolver->fromSubject($model)->getAuthName());
 
-        $I->assertNull($resolver->toSubject($authorizable));
+        $I->expectThrowable(UnresolvableException::class, fn () => $resolver->toSubject($authorizable));
     }
 }

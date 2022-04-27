@@ -1,16 +1,17 @@
 <?php
+
 declare(strict_types=1);
 
 namespace tests;
 
-use testapp\models\Permission;
 use SamIT\abac\values\Authorizable;
 use SamIT\abac\values\Grant;
 use SamIT\Yii2\abac\ActiveRecordRepository;
+use testapp\models\Permission;
 
 class ActiveRecordRepositoryCest
 {
-    public function _before(FunctionalTester $I)
+    public function _before(FunctionalTester $I): void
     {
         $schema = \Yii::$app->db->schema;
         \Yii::$app->db->createCommand()->createTable(Permission::tableName(), [
@@ -24,7 +25,7 @@ class ActiveRecordRepositoryCest
     }
 
     // tests
-    public function testGrant(FunctionalTester $I)
+    public function testGrant(FunctionalTester $I): void
     {
         $repository = new ActiveRecordRepository(Permission::class, [
             ActiveRecordRepository::SOURCE_NAME => 'source'
@@ -47,7 +48,7 @@ class ActiveRecordRepositoryCest
         ]);
     }
 
-    public function testGrantValidationFailed(FunctionalTester $I)
+    public function testGrantValidationFailed(FunctionalTester $I): void
     {
         $repository = new ActiveRecordRepository(Permission::class, [
             ActiveRecordRepository::SOURCE_NAME => 'source'
@@ -57,9 +58,7 @@ class ActiveRecordRepositoryCest
 
         $grant = new Grant($auth1, $auth2, 'abc');
 
-        $I->expectThrowable(\RuntimeException::class, function () use ($repository, $grant) {
-            return $repository->grant($grant);
-        });
+        $I->expectThrowable(\RuntimeException::class, fn () => $repository->grant($grant));
 
         $I->dontSeeRecord(Permission::class, [
             'source_id' => $auth1->getId(),
@@ -70,7 +69,7 @@ class ActiveRecordRepositoryCest
         ]);
     }
 
-    public function testRevoke(FunctionalTester $I)
+    public function testRevoke(FunctionalTester $I): void
     {
         $repository = new ActiveRecordRepository(Permission::class, [
             ActiveRecordRepository::SOURCE_NAME => 'source'
@@ -88,7 +87,7 @@ class ActiveRecordRepositoryCest
         $I->assertSame(0, (int) Permission::find()->count());
     }
 
-    public function testSearch(FunctionalTester $I)
+    public function testSearch(FunctionalTester $I): void
     {
         $repository = new ActiveRecordRepository(Permission::class, [
             ActiveRecordRepository::SOURCE_NAME => 'source'
