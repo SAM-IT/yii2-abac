@@ -22,7 +22,7 @@ jobs:
       - name: Install dependencies including dev
         run: composer install
       - name: Tests
-        run: phpunit --coverage-clover coverage.xml
+        run: vendor/bin/codecept run  --coverage-xml
       - name: Static analysis of tests
         run: phpstan analyse tests
       - name: Generate docs
@@ -34,7 +34,7 @@ jobs:
           publish_dir: ./docs
       - uses: codecov/codecov-action@v2
         with:
-          files: ./coverage.xml
+          files: ./tests/_output/coverage.xml
           flags: unittests
           name: codecov-umbrella
   commitlint:
