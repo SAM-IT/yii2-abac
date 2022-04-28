@@ -40,7 +40,8 @@
     },
     "autoload-dev": {
         "classmap": [
-            "vendor/yiisoft/yii2/Yii.php"
+            "vendor/yiisoft/yii2/Yii.php",
+            "tests/_support"
         ],
         "psr-4": {
             "testapp\\": [

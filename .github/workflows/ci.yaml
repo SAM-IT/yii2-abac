@@ -2,7 +2,7 @@ name: Continous integration
 on: [push, pull_request]
 jobs:
   code_checks:
-    name: Check code style
+    name: Check code
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
