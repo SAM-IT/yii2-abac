@@ -14,13 +14,11 @@ jobs:
       - name: Test code style
         run: ecs
       - name: Install dependencies
-        run: composer install --no-dev
+        run: composer install
       - name: Static analysis (psalm)
         run: psalm
       - name: Static analysis (phpstan)
         run: phpstan analyse src
-      - name: Install dependencies including dev
-        run: composer install
       - name: Tests
         run: vendor/bin/codecept run  --coverage-xml
       - name: Static analysis of tests
