@@ -14,43 +14,28 @@ use yii\web\IdentityInterface;
  */
 class User extends ActiveRecord implements IdentityInterface
 {
-    /**
-     * @inheritDoc
-     */
     public static function findIdentity($id)
     {
         return self::findOne(['id' => $id]);
     }
 
-    /**
-     * @inheritDoc
-     */
     public static function findIdentityByAccessToken($token, $type = null)
     {
         throw new NotSupportedException();
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function getId()
+    public function getId(): string|int
     {
-        // TODO: Implement getId() method.
+        return 15;
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function getAuthKey()
+    public function getAuthKey(): never
     {
-        // TODO: Implement getAuthKey() method.
+        throw new NotSupportedException();
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function validateAuthKey($authKey)
+    public function validateAuthKey($authKey): never
     {
-        // TODO: Implement validateAuthKey() method.
+        throw new NotSupportedException();
     }
 }

@@ -35,11 +35,14 @@ final class AccessCheckerCest
 
         $manager = new AuthManager($ruleEngine, new EmptyRepository(), new ActiveRecordResolver(), $environment);
         $I->expectThrowable(InvalidConfigException::class, function () use ($manager) {
-            /** @phpstan-ignore-next-line */
-            $accessChecker = new AccessChecker($manager, Car::class);
+            /**
+             * @phpstan-ignore-next-line
+             * @psalm-suppress InvalidArgument
+             */
+            new AccessChecker($manager, Car::class);
         });
 
-        $accessChecker = new AccessChecker($manager, User::class);
+        new AccessChecker($manager, User::class);
     }
 
     public function testCheckAccess(FunctionalTester $I): void

@@ -50,7 +50,7 @@
         }
     },
     "scripts": {
-        "test": "codecept run --coverage"
+        "test": "codecept run --coverage --coverage-html"
     },
 
     "config": {
