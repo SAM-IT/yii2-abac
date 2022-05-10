@@ -115,11 +115,12 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/PermissionValidator.php"><a href="files/src-permissionvalidator.html"><abbr title="src/PermissionValidator.php">PermissionValidator.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">17</span>
+    <span class="phpdocumentor-element-found-in__line">21</span>
 
     </aside>
 
-        
+            <p class="phpdocumentor-summary">Validates permissions on one or more related objects in the database.</p>
+
 
 
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
@@ -171,23 +172,16 @@
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/SamIT-Yii2-abac-PermissionValidator.html#property_field">$field</a>
+    <a href="classes/SamIT-Yii2-abac-PermissionValidator.html#property_finder">$finder</a>
     <span>
-                        &nbsp;: string            </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/SamIT-Yii2-abac-PermissionValidator.html#property_query">$query</a>
-    <span>
-                        &nbsp;: <abbr title="\yii\db\ActiveQueryInterface">ActiveQueryInterface</abbr>            </span>
+                        &nbsp;: <a href="classes/SamIT-Yii2-abac-FinderInterface.html"><abbr title="\SamIT\Yii2\abac\FinderInterface">FinderInterface</abbr></a>            </span>
 </dt>
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/SamIT-Yii2-abac-PermissionValidator.html#property_source">$source</a>
     <span>
-                        &nbsp;: <abbr title="\SamIT\abac\interfaces\Authorizable">Authorizable</abbr>            </span>
+                        &nbsp;: object            </span>
 </dt>
 <dd></dd>
 
@@ -197,6 +191,13 @@
                                 &nbsp;: mixed    </span>
 </dt>
 <dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/SamIT-Yii2-abac-PermissionValidator.html#method_create">create()</a>
+    <span>
+                                &nbsp;: self    </span>
+</dt>
+<dd>Static constructor for simpler syntax in models</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
     <a href="classes/SamIT-Yii2-abac-PermissionValidator.html#method_validateValue">validateValue()</a>
@@ -233,7 +234,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/PermissionValidator.php"><a href="files/src-permissionvalidator.html"><abbr title="src/PermissionValidator.php">PermissionValidator.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">20</span>
+    <span class="phpdocumentor-element-found-in__line">23</span>
 
     </aside>
 
@@ -267,7 +268,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/PermissionValidator.php"><a href="files/src-permissionvalidator.html"><abbr title="src/PermissionValidator.php">PermissionValidator.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">23</span>
+    <span class="phpdocumentor-element-found-in__line">28</span>
 
     </aside>
 
@@ -278,9 +279,9 @@
     <span class="phpdocumentor-signature__name">$permissionName</span>
      = <span class="phpdocumentor-signature__default-value">&#039;admin&#039;</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
+    
+        <section class="phpdocumentor-description"><p>name of the required permission</p>
+</section>
 
     
 
@@ -301,7 +302,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/PermissionValidator.php"><a href="files/src-permissionvalidator.html"><abbr title="src/PermissionValidator.php">PermissionValidator.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">30</span>
+    <span class="phpdocumentor-element-found-in__line">35</span>
 
     </aside>
 
@@ -326,58 +327,24 @@
             -private
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_field">
-        $field
-        <a href="classes/SamIT-Yii2-abac-PermissionValidator.html#property_field" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_finder">
+        $finder
+        <a href="classes/SamIT-Yii2-abac-PermissionValidator.html#property_finder" class="headerlink"><i class="fas fa-link"></i></a>
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/PermissionValidator.php"><a href="files/src-permissionvalidator.html"><abbr title="src/PermissionValidator.php">PermissionValidator.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">19</span>
+    <span class="phpdocumentor-element-found-in__line">34</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">string</span>
-    <span class="phpdocumentor-signature__name">$field</span>
-     = <span class="phpdocumentor-signature__default-value">&#039;id&#039;</span></code>
-
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_query">
-        $query
-        <a href="classes/SamIT-Yii2-abac-PermissionValidator.html#property_query" class="headerlink"><i class="fas fa-link"></i></a>
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/PermissionValidator.php"><a href="files/src-permissionvalidator.html"><abbr title="src/PermissionValidator.php">PermissionValidator.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">29</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><abbr title="\yii\db\ActiveQueryInterface">ActiveQueryInterface</abbr></span>
-    <span class="phpdocumentor-signature__name">$query</span>
+        <span class="phpdocumentor-signature__type"><a href="classes/SamIT-Yii2-abac-FinderInterface.html"><abbr title="\SamIT\Yii2\abac\FinderInterface">FinderInterface</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$finder</span>
     </code>
 
         <section class="phpdocumentor-description"></section>
@@ -403,14 +370,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/PermissionValidator.php"><a href="files/src-permissionvalidator.html"><abbr title="src/PermissionValidator.php">PermissionValidator.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">31</span>
+    <span class="phpdocumentor-element-found-in__line">36</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><abbr title="\SamIT\abac\interfaces\Authorizable">Authorizable</abbr></span>
+        <span class="phpdocumentor-signature__type">object</span>
     <span class="phpdocumentor-signature__name">$source</span>
     </code>
 
@@ -441,21 +408,21 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/PermissionValidator.php"><a href="files/src-permissionvalidator.html"><abbr title="src/PermissionValidator.php">PermissionValidator.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">28</span>
+    <span class="phpdocumentor-element-found-in__line">33</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\yii\db\ActiveQueryInterface">ActiveQueryInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$query</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\SamIT\abac\interfaces\AccessChecker">AccessChecker</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$accessChecker</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\SamIT\abac\interfaces\Authorizable">Authorizable</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$config</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/SamIT-Yii2-abac-FinderInterface.html"><abbr title="\SamIT\Yii2\abac\FinderInterface">FinderInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$finder</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\SamIT\abac\interfaces\AccessChecker">AccessChecker</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$accessChecker</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">object&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$config</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$query</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\yii\db\ActiveQueryInterface">ActiveQueryInterface</abbr></span>
+                <span class="phpdocumentor-signature__argument__name">$finder</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/SamIT-Yii2-abac-FinderInterface.html"><abbr title="\SamIT\Yii2\abac\FinderInterface">FinderInterface</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"></section>
@@ -471,7 +438,7 @@
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$source</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\SamIT\abac\interfaces\Authorizable">Authorizable</abbr></span>
+                : <span class="phpdocumentor-signature__argument__return-type">object</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"></section>
@@ -497,6 +464,81 @@
                     <article
         class="phpdocumentor-element
             -method
+            -public
+                                    -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_create">
+        create()
+        <a href="classes/SamIT-Yii2-abac-PermissionValidator.html#method_create" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/PermissionValidator.php"><a href="files/src-permissionvalidator.html"><abbr title="src/PermissionValidator.php">PermissionValidator.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">66</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Static constructor for simpler syntax in models</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">create</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;int, string&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$attributes</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\yii\db\ActiveQueryInterface">ActiveQueryInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$query</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$accessCheckerComponent</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;authManager&#039;</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$userComponent</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;user&#039;</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$field</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;id&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">self</span></code>
+
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$attributes</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;int, string&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$query</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\yii\db\ActiveQueryInterface">ActiveQueryInterface</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"></section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$accessCheckerComponent</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">&#039;authManager&#039;</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"></section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$userComponent</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">&#039;user&#039;</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"></section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$field</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">&#039;id&#039;</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"></section>
+
+            </dd>
+            </dl>
+
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">self</span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
             -protected
                                                         "
 >
@@ -507,7 +549,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/PermissionValidator.php"><a href="files/src-permissionvalidator.html"><abbr title="src/PermissionValidator.php">PermissionValidator.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">41</span>
+    <span class="phpdocumentor-element-found-in__line">46</span>
 
     </aside>
 

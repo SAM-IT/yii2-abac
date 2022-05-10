@@ -81,6 +81,31 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/SamIT-Yii2-abac-AccessChecker.html#property_userCache"
         },                {
+            "fqsen": "\\SamIT\\Yii2\\abac\\ActiveQueryFinder",
+            "name": "ActiveQueryFinder",
+            "summary": "",
+            "url": "classes/SamIT-Yii2-abac-ActiveQueryFinder.html"
+        },                {
+            "fqsen": "\\SamIT\\Yii2\\abac\\ActiveQueryFinder\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/SamIT-Yii2-abac-ActiveQueryFinder.html#method___construct"
+        },                {
+            "fqsen": "\\SamIT\\Yii2\\abac\\ActiveQueryFinder\u003A\u003Afind\u0028\u0029",
+            "name": "find",
+            "summary": "",
+            "url": "classes/SamIT-Yii2-abac-ActiveQueryFinder.html#method_find"
+        },                {
+            "fqsen": "\\SamIT\\Yii2\\abac\\ActiveQueryFinder\u003A\u003A\u0024query",
+            "name": "query",
+            "summary": "",
+            "url": "classes/SamIT-Yii2-abac-ActiveQueryFinder.html#property_query"
+        },                {
+            "fqsen": "\\SamIT\\Yii2\\abac\\ActiveQueryFinder\u003A\u003A\u0024field",
+            "name": "field",
+            "summary": "",
+            "url": "classes/SamIT-Yii2-abac-ActiveQueryFinder.html#property_field"
+        },                {
             "fqsen": "\\SamIT\\Yii2\\abac\\ActiveRecordRepository",
             "name": "ActiveRecordRepository",
             "summary": "Class\u0020ActiveRecordRepository\nStore\u0020permissions\u0020in\u0020an\u0020ActiveRecord\u0020model",
@@ -161,9 +186,19 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/SamIT-Yii2-abac-ActiveRecordResolver.html#method_toSubject"
         },                {
+            "fqsen": "\\SamIT\\Yii2\\abac\\FinderInterface",
+            "name": "FinderInterface",
+            "summary": "",
+            "url": "classes/SamIT-Yii2-abac-FinderInterface.html"
+        },                {
+            "fqsen": "\\SamIT\\Yii2\\abac\\FinderInterface\u003A\u003Afind\u0028\u0029",
+            "name": "find",
+            "summary": "",
+            "url": "classes/SamIT-Yii2-abac-FinderInterface.html#method_find"
+        },                {
             "fqsen": "\\SamIT\\Yii2\\abac\\PermissionValidator",
             "name": "PermissionValidator",
-            "summary": "",
+            "summary": "Validates\u0020permissions\u0020on\u0020one\u0020or\u0020more\u0020related\u0020objects\u0020in\u0020the\u0020database.",
             "url": "classes/SamIT-Yii2-abac-PermissionValidator.html"
         },                {
             "fqsen": "\\SamIT\\Yii2\\abac\\PermissionValidator\u003A\u003A__construct\u0028\u0029",
@@ -176,10 +211,10 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/SamIT-Yii2-abac-PermissionValidator.html#method_validateValue"
         },                {
-            "fqsen": "\\SamIT\\Yii2\\abac\\PermissionValidator\u003A\u003A\u0024field",
-            "name": "field",
-            "summary": "",
-            "url": "classes/SamIT-Yii2-abac-PermissionValidator.html#property_field"
+            "fqsen": "\\SamIT\\Yii2\\abac\\PermissionValidator\u003A\u003Acreate\u0028\u0029",
+            "name": "create",
+            "summary": "Static\u0020constructor\u0020for\u0020simpler\u0020syntax\u0020in\u0020models",
+            "url": "classes/SamIT-Yii2-abac-PermissionValidator.html#method_create"
         },                {
             "fqsen": "\\SamIT\\Yii2\\abac\\PermissionValidator\u003A\u003A\u0024allowArray",
             "name": "allowArray",
@@ -191,10 +226,10 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/SamIT-Yii2-abac-PermissionValidator.html#property_permissionName"
         },                {
-            "fqsen": "\\SamIT\\Yii2\\abac\\PermissionValidator\u003A\u003A\u0024query",
-            "name": "query",
+            "fqsen": "\\SamIT\\Yii2\\abac\\PermissionValidator\u003A\u003A\u0024finder",
+            "name": "finder",
             "summary": "",
-            "url": "classes/SamIT-Yii2-abac-PermissionValidator.html#property_query"
+            "url": "classes/SamIT-Yii2-abac-PermissionValidator.html#property_finder"
         },                {
             "fqsen": "\\SamIT\\Yii2\\abac\\PermissionValidator\u003A\u003A\u0024accessChecker",
             "name": "accessChecker",

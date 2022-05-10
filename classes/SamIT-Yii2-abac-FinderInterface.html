@@ -91,42 +91,167 @@
                     <ul class="phpdocumentor-breadcrumbs">
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/samit.html">SamIT</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/samit-yii2.html">Yii2</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/samit-yii2-abac.html">abac</a></li>
     </ul>
 
-    <article class="phpdocumentor-element -namespace">
-        <h2 class="phpdocumentor-content__title">abac</h2>
+    <article class="phpdocumentor-element -interface">
+        <h2 class="phpdocumentor-content__title">
+    FinderInterface
+                <div class="phpdocumentor-element__package">
+            in
+            <ul class="phpdocumentor-breadcrumbs">
+                                    <li><a href="packages/AttributeBasedAccessControl.html">AttributeBasedAccessControl</a></li>
+                            </ul>
+        </div>
+    </h2>
+
+        <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/FinderInterface.php"><a href="files/src-finderinterface.html"><abbr title="src/FinderInterface.php">FinderInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">7</span>
+
+    </aside>
 
         
+    <section class="phpdocumentor-description"></section>
 
-<h3 id="interfaces_class_traits">
-    Interfaces, Classes, Traits and Enums
-    <a href="#interfaces_class_traits" class="headerlink"><i class="fas fa-link"></i></a>
+
+
+
+
+
+
+
+<h3 id="toc">
+    Table of Contents
+    <a href="#toc" class="headerlink"><i class="fas fa-link"></i></a>
 </h3>
 
 <dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/SamIT-Yii2-abac-FinderInterface.html"><abbr title="\SamIT\Yii2\abac\FinderInterface">FinderInterface</abbr></a></dt>
-        <dd></dd>
-    
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/SamIT-Yii2-abac-AccessChecker.html"><abbr title="\SamIT\Yii2\abac\AccessChecker">AccessChecker</abbr></a></dt>
-        <dd></dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/SamIT-Yii2-abac-ActiveQueryFinder.html"><abbr title="\SamIT\Yii2\abac\ActiveQueryFinder">ActiveQueryFinder</abbr></a></dt>
-        <dd></dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/SamIT-Yii2-abac-ActiveRecordRepository.html"><abbr title="\SamIT\Yii2\abac\ActiveRecordRepository">ActiveRecordRepository</abbr></a></dt>
-        <dd>Class ActiveRecordRepository
-Store permissions in an ActiveRecord model</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/SamIT-Yii2-abac-ActiveRecordResolver.html"><abbr title="\SamIT\Yii2\abac\ActiveRecordResolver">ActiveRecordResolver</abbr></a></dt>
-        <dd></dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/SamIT-Yii2-abac-PermissionValidator.html"><abbr title="\SamIT\Yii2\abac\PermissionValidator">PermissionValidator</abbr></a></dt>
-        <dd>Validates permissions on one or more related objects in the database.</dd>
-    
-    
-    </dl>
+                        <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/SamIT-Yii2-abac-FinderInterface.html#method_find">find()</a>
+    <span>
+                                &nbsp;: iteratable&lt;string|int, object&gt;    </span>
+</dt>
+<dd></dd>
+
+        </dl>
 
 
 
         
 
+            <section class="phpdocumentor-methods">
+        <h3 class="phpdocumentor-elements__header" id="methods">
+            Methods
+            <a href="classes/SamIT-Yii2-abac-FinderInterface.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+        </h3>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_find">
+        find()
+        <a href="classes/SamIT-Yii2-abac-FinderInterface.html#method_find" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/FinderInterface.php"><a href="files/src-finderinterface.html"><abbr title="src/FinderInterface.php">FinderInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">13</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">find</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$values</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">iteratable&lt;string|int, object&gt;</span></code>
+
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$values</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">iteratable&lt;string|int, object&gt;</span>
+            &mdash;
         
+    
+</article>
+            </section>
+
+        
+    <script type="text/javascript">
+        function loadExternalCodeSnippets(line) {
+            Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach((pre) => {
+                var src = pre.getAttribute('data-src').replace( /\\/g, '/');
+                var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+                var language = 'php';
+
+                var code = document.createElement('code');
+                code.className = 'language-' + language;
+
+                pre.textContent = '';
+
+                pre.setAttribute('data-line', line)
+                code.textContent = 'Loading…';
+
+                pre.appendChild(code);
+
+                var xhr = new XMLHttpRequest();
+
+                xhr.open('GET', src, true);
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4) {
+
+                        if (xhr.status < 400 && xhr.responseText) {
+                            code.textContent = xhr.responseText;
+
+                            Prism.highlightElement(code);
+                        }
+                        else if (xhr.status >= 400) {
+                            code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                        }
+                        else {
+                            code.textContent = '✖ Error: File does not exist, is empty or trying to view from localhost';
+                        }
+                    }
+                };
+
+                xhr.send(null);
+            });
+        }
+
+        var modals = document.querySelectorAll("[data-modal]");
+
+        modals.forEach(function (trigger) {
+            trigger.addEventListener("click", function (event) {
+                //event.preventDefault();
+                const modal = document.getElementById(trigger.dataset.modal);
+                modal.classList.add("phpdocumentor-modal__open");
+                loadExternalCodeSnippets(trigger.dataset.line)
+                const exits = modal.querySelectorAll("[data-exit-button]");
+                exits.forEach(function (exit) {
+                    exit.addEventListener("click", function (event) {
+                        event.preventDefault();
+                        modal.classList.remove("phpdocumentor-modal__open");
+                    });
+                });
+            });
+        });
+    </script>
+
     </article>
                 <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
     <section class="phpdocumentor-search-results__dialog">
@@ -141,7 +266,7 @@ Store permissions in an ActiveRecord model</dd>
 </section>
             </div>
         </div>
-        <a href="namespaces/samit-yii2-abac.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/SamIT-Yii2-abac-FinderInterface.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 
